@@ -1,13 +1,13 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
-# Home page
+# GLOBAL
 GET     /                           controllers.Application.index
 GET     /login                      controllers.Security.login
 POST    /login                      controllers.Security.authenticate
 
 GET     /logout                     controllers.Security.logout
+
+########################################################################
+############# Manufacturer view ########################################
+GET     /manufacturer/products      controllers.manufacturer.Products.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

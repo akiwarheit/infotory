@@ -2,43 +2,34 @@ package models;
 
 import java.util.Date;
 
-public class Product {
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-	private String upc;
-	private String description;
-	private Date created;
-	private Date updated;
+import play.db.ebean.Model;
 
-	public String getUpc() {
-		return upc;
-	}
+@Entity
+public class Product extends Model {
 
-	public void setUpc(String upc) {
-		this.upc = upc;
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public String getDescription() {
-		return description;
-	}
+	@Id
+	public Long id;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public String upc;
+	public String description;
+	public Date created;
+	public Date updated;
 
-	public Date getCreated() {
-		return created;
-	}
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "manufacturer_id")
+	public Manufacturer manufacturer;
 
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-	public Date getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
+	public static Finder<Long, Product> find = new Finder<Long, Product>(Long.class, Product.class);
 
 }

@@ -3,6 +3,7 @@ import java.util.Map;
 
 import models.Account;
 import models.AccountRole;
+import models.Manufacturer;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger.ALogger;
@@ -16,11 +17,7 @@ public class Global extends GlobalSettings {
 	@Transactional
 	public void onStart(Application app) {
 		LOG.info("Infobate is now starting!");
-		try {
-			init();
-		} catch (Exception ex) {
-			LOG.error(ex.getMessage());
-		}
+		init();
 	}
 
 	public void onStop(Application app) {
@@ -30,16 +27,33 @@ public class Global extends GlobalSettings {
 	@SuppressWarnings("unchecked")
 	public void init() {
 		Map<String, List<Object>> initValues = (Map<String, List<Object>>) Yaml.load("init.yaml");
-		if (Account.find.all().isEmpty() && AccountRole.find.all().isEmpty()) {
+
+		LOG.info("Inserting roles");
+		if (AccountRole.find.all().isEmpty()) {
 			for (Object role : initValues.get("roles")) {
 				((AccountRole) role).save();
 			}
-			for (Object account : initValues.get("accounts")) {
-				((Account) account).roles.add(AccountRole.get("admin"));
-				((Account) account).roles.add(AccountRole.get("manufacturer"));
-				((Account) account).roles.add(AccountRole.get("distributor"));
-				((Account) account).save();
+			LOG.info("Inserted roles");
+		}
+
+		LOG.info("Inserting manufacturers");
+		if (Manufacturer.find.all().isEmpty()) {
+			for (Object manufacturer : initValues.get("manufacturers")) {
+				((Manufacturer) manufacturer).save();
 			}
+			LOG.info("Inserted manufacturers");
+		}
+
+		LOG.info("Inserting accounts");
+		if (Account.find.all().isEmpty()) {
+			for (Object account : initValues.get("accounts")) {
+				Account accountObj = ((Account) account);
+				accountObj.roles.add(AccountRole.get("admin"));
+				accountObj.roles.add(AccountRole.get("manufacturer"));
+				accountObj.roles.add(AccountRole.get("distributor"));
+				accountObj.save();
+			}
+			LOG.info("Inserted accounts");
 		}
 	}
 }

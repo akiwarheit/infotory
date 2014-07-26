@@ -4,11 +4,11 @@
 	</div>
 	<nav class="sidebar-nav">
 		<ul id="menu">
-			<li class=""><a href="@controllers.routes.Application.index()"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
+			<li class=""><a href="@controllers.routes.Application.index()"><span class="glyphicon glyphicon-home"></span>Dashboard</a></li>
 
-			<li class=""><a href="#"><span class="glyphicon glyphicon-wrench"></span>Manufacturer<span class="fa arrow"></span></a>
+			<li class=""><a href="#"><span class="glyphicon glyphicon-globe"></span>Manufacturer<span class="fa arrow"></span></a>
 				<ul class="collapse" style="height: 0px;">
-					<li><a href="#"><span class="glyphicon glyphicon-list"></span>Products</a></li>
+					<li><a href="@controllers.manufacturer.routes.Products.index()"><span class="glyphicon glyphicon-list"></span>Products</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-usd"></span>Promotions</a></li>
 				</ul>
 			</li>

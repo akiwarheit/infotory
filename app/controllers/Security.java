@@ -18,14 +18,14 @@ public class Security extends EnhancedController {
 		Account account = Account.authenticate(login.email, login.password);
 		
 		if(account != null) {
+			LOG.info("Account found");
 			bind(account);
-			redirect(controllers.routes.Application.index());
+			return redirect(controllers.routes.Application.index());
 		} else {
+			LOG.info("Account is null");
 			flash("Unable to authenticate", "Make sure your credentials are correct.");
-			redirect(controllers.routes.Security.login());
+			return redirect(controllers.routes.Security.login());
 		}
-		return badRequest();
-		
 	}
 
 	@SubjectPresent
