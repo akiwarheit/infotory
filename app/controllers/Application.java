@@ -1,26 +1,14 @@
 package controllers;
 
-import static play.data.Form.form;
-import play.data.Form;
-import play.mvc.Controller;
+import play.api.templates.Html;
 import play.mvc.Result;
-import views.html.index;
-import views.html.login;
+import be.objectify.deadbolt.java.actions.SubjectPresent;
 
-public class Application extends Controller {
+public class Application extends EnhancedController {
 
+	@SubjectPresent
 	public static Result index() {
-		return ok(index.render("Your new application is ready."));
-	}
-
-	public static Result login() {
-		return ok(login.render(form(Login.class)));
-	}
-
-	@SuppressWarnings("unused")
-    public static Result authenticate() {
-		Form<Login> loginForm = form(Login.class).bindFromRequest();
-		return ok();
+		return ok(Application.render("Dashboard", views.html.partials.content.dash.render()));
 	}
 
 	public static class Login {
@@ -30,4 +18,7 @@ public class Application extends Controller {
 
 	}
 
+	public static Html render(String title, Html html) {
+		return views.html.container.render(title, html);
+	}
 }

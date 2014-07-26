@@ -1,58 +1,70 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints;
-import play.db.jpa.JPA;
+import play.db.ebean.Model;
 import play.db.jpa.Transactional;
+import be.objectify.deadbolt.core.models.Permission;
+import be.objectify.deadbolt.core.models.Role;
+import be.objectify.deadbolt.core.models.Subject;
 
 @Entity
-public class Account {
+@Table(name = "account")
+public class Account extends Model implements Subject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Constraints.Required
 	@Formats.NonEmpty
-	private String email;
+	public String email;
 
 	@Constraints.Required
-	private String name;
+	public String name;
 
 	@Constraints.Required
-	private String password;
+	public String password;
+
+	@ManyToMany
+	@JoinTable(name = "account_roles")
+	public List<AccountRole> roles;
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	public static Finder<Long, Account> find = new Finder<Long, Account>(Long.class,
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	Account.class);
 
 	@Transactional
 	public static Account authenticate(String email, String password) {
-		Account account = JPA.em().find(Account.class, email);
-		if (account.getPassword().equals(password)) {
-			return account;
-		} else {
-			return null;
-		}
+		return Account.find.where().eq("email", email).findUnique();
 	}
+
+	@Override
+    public String getIdentifier() {
+	    return email;
+    }
+
+	@Override
+    public List<? extends Permission> getPermissions() {
+	    return roles;
+    }
+
+	@Override
+    public List<? extends Role> getRoles() {
+	    return roles;
+    }
 }

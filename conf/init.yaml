@@ -1,0 +1,14 @@
+# Roles
+roles:
+  - !!models.AccountRole
+    name: admin
+  - !!models.AccountRole
+    name: manufacturer
+  - !!models.AccountRole
+    name: distributor
+    
+accounts:
+  - !!models.Account
+    email: akiwarheit@gmail.com
+    name: Kevin Jude Deloria
+    password: test
