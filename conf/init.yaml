@@ -11,7 +11,6 @@ accounts:
     email: "akiwarheit@gmail.com"
     name: Kevin Jude Deloria
     password: test
-
   - !!models.Account
     email: "pgeorge@gmail.com"
     name: Paul George
@@ -20,3 +19,15 @@ accounts:
 manufacturers:
   - !!models.Manufacturer
     name: Mars Chocolate
+    
+products:
+  - !!models.Product
+    description: 3 Musketeers Singles
+  - !!models.Product
+    description: Dove Dark Choc Singles
+  - !!models.Product
+    description: DV CookCRM SNG
+  - !!models.Product
+    description: "MMS DARK MINT SINGL"
+  - !!models.Product
+    description: "M&MS DC SNGLE"

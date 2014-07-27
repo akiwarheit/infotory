@@ -1,3 +1,13 @@
+#logo {
+	opacity: 0.8;
+	background: black;
+}
+
+#logo img {
+	padding: 15px 15px 15px 25px;
+}
+
+
 #projects-list tr td {
 	border-top: 0;
 	padding-left: 0;
@@ -54,7 +64,7 @@
 }
 
 .pink {
-	background: #CC3333;
+	background: #9b2200;
 	color: #ffffff;
 }
 

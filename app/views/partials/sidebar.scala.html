@@ -1,6 +1,7 @@
 
 <aside class="sidebar">
-	<div style="height: 110px;">
+	<div id="logo">
+		<img src="@routes.Assets.at("images/infobate-logo.png")" class="img-responsive" alt="infobate-logo"/>
 	</div>
 	<nav class="sidebar-nav">
 		<ul id="menu">
@@ -19,7 +20,7 @@
 					<li><a href="#"><span class="glyphicon glyphicon-usd"></span>Promotions</a></li>
 				</ul>
 			</li>
-
+			<li class=""><a href="@controllers.audit.routes.Audit.list()"><span class="glyphicon glyphicon-file"></span>Audit Log</a></li>
 			<li class=""><a href="#"><span class="glyphicon glyphicon-user"></span>My Account</a>
             <li><a href="@controllers.routes.Security.logout()"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
 		</ul>

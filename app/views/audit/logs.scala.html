@@ -1,0 +1,41 @@
+@import be.objectify.deadbolt.java.views.html._ 
+@import be.objectify.deadbolt.core.utils.TemplateUtils._
+
+<section class="content">
+	<div class="col-xs-12">
+		<h1 class="page-header">Audit Logs</h1>
+	</div>
+
+	<div class="clearfix"></div>
+
+	<div class="col-xs-12">
+		<div class="alert alert-info alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			<form class="form-inline">
+				<div class="form-group">
+					Would you like to export the following list?
+					<button class="btn btn-success btn-sm">Spreadsheet</button>
+					<button class="btn btn-warning btn-sm">CSV</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<div class="col-xs-12">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Changed By</th>
+					<th>Date Changed</th>
+					<th>Remarks</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</section>

@@ -1,0 +1,38 @@
+<section class="content">
+	<div class="col-xs-12">
+		<h1 class="page-header">
+			Products <small>New</small>
+		</h1>
+	</div>
+
+	<div class="clearfix"></div>
+
+	<div class="col-xs-12">
+		<form class="form-horizontal col-xs-4" role="form">
+			<div class="form-group">
+				<label for="description" class="col-xs-3 control-label">Description</label>
+				<div class="col-xs-9">
+					<input type="text" class="form-control" name="description" id="description" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="manufacturer" class="col-xs-3 control-label">Manufacturer</label>
+				<div class="col-xs-9">
+					<input type="text" class="form-control" name="manufacturer" id="manufacturer" placeholder="User's manufacturer will be displayed here" disabled/>
+				</div>
+			</div>
+			
+			<div class="form-group pull-right">
+				<div class="col-xs-12">
+					<a href="@controllers.manufacturer.routes.Products.index()"
+						class="btn btn-default">Back</a>
+					<button class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+</section>

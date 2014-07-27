@@ -26,12 +26,20 @@ create table manufacturer (
 
 create table product (
   id                        bigint auto_increment not null,
-  upc                       varchar(255),
   description               varchar(255),
   created                   datetime,
   updated                   datetime,
   manufacturer_id           bigint,
+  constraint uq_product_description unique (description),
   constraint pk_product primary key (id))
+;
+
+create table upc (
+  id                        bigint auto_increment not null,
+  code                      varchar(255),
+  description               varchar(255),
+  product_id                bigint,
+  constraint pk_upc primary key (id))
 ;
 
 
@@ -42,6 +50,8 @@ create table account_roles (
 ;
 alter table product add constraint fk_product_manufacturer_1 foreign key (manufacturer_id) references manufacturer (id) on delete restrict on update restrict;
 create index ix_product_manufacturer_1 on product (manufacturer_id);
+alter table upc add constraint fk_upc_product_2 foreign key (product_id) references product (id) on delete restrict on update restrict;
+create index ix_upc_product_2 on upc (product_id);
 
 
 
@@ -62,6 +72,8 @@ drop table role;
 drop table manufacturer;
 
 drop table product;
+
+drop table upc;
 
 SET FOREIGN_KEY_CHECKS=1;
 
